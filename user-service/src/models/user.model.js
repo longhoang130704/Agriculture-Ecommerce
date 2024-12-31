@@ -38,7 +38,7 @@ const User = new Schema({
     sex: {
         type: String,
         required: [true, 'Sex is required'],
-        enum: ['male', 'female', 'other'], // Giá trị hợp lệ
+        enum: ['Male', 'Female', 'Other'], // Giá trị hợp lệ
     },
     cccd: {
         type: String,
