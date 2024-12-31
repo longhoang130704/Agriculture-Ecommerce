@@ -1,36 +1,40 @@
 
 
-
-const createUser = async() => {
-    return
+const createUser = async(req, res) => {
+    res.send('create')
 }
 
-const getAllUser = async() => {
-    return
+const login = async(req, res) => {
+    res.send('login')
 }
 
-const getUserById = async() => {
-    return
+const getAllUser = async(req, res) => {
+    res.send('all')
 }
 
-const updateUserById = async() => {
-    return
+const getUserById = async(req, res) => {
+    res.send('one')
 }
 
-const deleteUserById = async() => {
-    return
+const updateUserById = async(req, res) => {
+    res.send('update')
 }
 
-const restore = async() => {
-    return
+const deleteUserById = async(req, res) => {
+    res.send('delete')
 }
 
-const destroy = async() => {
-    return
+const restore = async(req, res) => {
+    res.send('restore')
+}
+
+const destroy = async(req, res) => {
+    res.send('destroy')
 }
 
 const UserService = {
     createUser,
+    login,
     getAllUser,
     getUserById,
     updateUserById,
