@@ -6,7 +6,7 @@ const initRouter = (app) => {
     app.use('/api/user', userRouter);
 
     // Group authentication routes
-    app.use('api/auth', authRouter);
+    app.use('/api/auth', authRouter);
 }
 
 export default initRouter;

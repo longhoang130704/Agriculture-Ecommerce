@@ -1,9 +1,9 @@
 import express from 'express';
 
-import UserService from "../../api/user.api.js";
+import AuthService from '../../api/auth.api.js';
 
 const authRouter = express.Router();
 
-authRouter.post('/login', UserService.login);
+authRouter.post('/login', AuthService.login);
 
 export default authRouter;
