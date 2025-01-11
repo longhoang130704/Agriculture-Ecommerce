@@ -1,7 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  scroll-behavior: smooth;
+  font-family: "Jost", serif;
+}
 /* ... */
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -40,6 +49,10 @@ h1 {
   line-height: 1.1;
 }
 
+input:active,
+input:hover {
+  border-color: #89dfba;
+}
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -52,7 +65,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #64ffaf;
 }
 button:focus,
 button:focus-visible {
