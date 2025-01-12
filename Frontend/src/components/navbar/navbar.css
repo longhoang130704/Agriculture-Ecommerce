@@ -1,0 +1,47 @@
+.logo{
+    width: 44px;
+}
+.navbar-container{
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    margin: 10px 28vw 0px 28vw;
+    border-radius: 50px;
+    height: 60px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    box-shadow: 0 0px 7px 1px #8EB486; 
+}
+.navbar-center{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    list-style: none;
+}
+.navbar-left{
+margin-left: -8px;
+}
+.button{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    list-style: none;
+
+}
+.button img{
+    width: 30px;
+}
+.navbar-right{
+    font-size: small;
+    border: #A52223 solid 2px;
+    padding: 0px 2px 0px 15px;
+    border-radius: 50px;
+    margin-right: -1px;
+    cursor: pointer;
+}
