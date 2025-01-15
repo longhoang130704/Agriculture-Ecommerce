@@ -17,6 +17,7 @@
     right: 0;
     padding: 1rem;
     box-shadow: 0 0px 7px 1px #8EB486; 
+    z-index: 100;
 }
 .navbar-center{
     display: flex;
@@ -32,16 +33,19 @@ margin-left: -8px;
     gap: 20px;
     align-items: center;
     list-style: none;
-
+    transition: transform 0.3s ease;
+    border-radius: 50px;
+    border: #A52223 solid 2px;
+    padding: 0px 2px 0px 15px;
+}
+.button:hover{
+    transform: scale(1.1);
 }
 .button img{
     width: 30px;
 }
 .navbar-right{
     font-size: small;
-    border: #A52223 solid 2px;
-    padding: 0px 2px 0px 15px;
-    border-radius: 50px;
     margin-right: -1px;
     cursor: pointer;
 }

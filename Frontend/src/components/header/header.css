@@ -1,0 +1,20 @@
+
+.header-contents{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vw;
+    align-items: start;
+    max-width: 80%;
+    top:36vw;
+    left: 10vw;
+    animation: fadeIn 2s;
+}
+.header{
+    margin: 40px auto;
+    height: 40vw;
+    background: url('../../assets/headerBG.png') no-repeat center;
+    background-size: contain;
+    color: white;
+    text-shadow: 0 0 0.9em #000000;
+}
