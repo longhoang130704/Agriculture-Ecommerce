@@ -2,11 +2,8 @@ import cb_image from '../assets/images/cabbage.jpg'
 import plus_icon from '../assets/icons/plus_cartitem.png'
 import minus_icon from '../assets/icons/minus_cartitem.png'
 import close_icon from '../assets/icons/close_cartitem.png'
-
+import { formatCurrency } from '../lib/utils'
 const CartItem = () => {
-  const formatCurrency = (number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  }
   const formatAmount = (number) => {
     if(number < 10) return `0${number}`
   }
