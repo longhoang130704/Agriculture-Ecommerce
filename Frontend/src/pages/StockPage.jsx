@@ -1,10 +1,12 @@
-
+import { useEffect, useState, useRef } from 'react';
 import Category from './../components/Category';
 import FilterCell from './../components/FilterCell';
 import AddProductButton from './../components/AddProductButton';
 import ItemSupplier from './../components/ItemSupplier';
 import ItemSupplierGray from '../components/ItemSupplierGray'
 import { formatDate } from '../lib/utils';
+import EditProduct from '../components/EditProduct';
+import AddProduct from '../components/AddProduct';
 const StockPage = () => {
     const products = [
         {
@@ -515,7 +517,7 @@ const StockPage = () => {
             productName: {
                 title: 'Tên sản phẩm',
                 id: 'productName',
-                content: 'Cà chua vị nho',
+                content: 'Cà chua bi vị nho',
             },
             buyPrice: {
                 title: 'Giá mua vào',
@@ -830,7 +832,7 @@ const StockPage = () => {
             productName: {
                 title: 'Tên sản phẩm',
                 id: 'productName',
-                content: 'Táo xanh vị kiwi',
+                content: 'Táo xanh vị kiwi mới nổi ',
             },
             buyPrice: {
                 title: 'Giá mua vào',
@@ -893,7 +895,7 @@ const StockPage = () => {
             productName: {
                 title: 'Tên sản phẩm',
                 id: 'productName',
-                content: 'Cà rốt vị đào',
+                content: 'Cà rốt vị đào dài',
             },
             buyPrice: {
                 title: 'Giá mua vào',
@@ -1017,29 +1019,48 @@ const StockPage = () => {
         }
 
     ];
+    const [currentProduct, setCurrentProduct] = useState(null)
+    const [editTable, setEditTable] = useState(false)
+    const [addTable, setAddTable] = useState(false)
+    const mainRef = useRef(null);
     
+    useEffect(() => {
+        const main = mainRef.current || document.getElementById('main');
+        if (editTable || addTable) {
+          main?.classList.add('pointer-events-none', 'opacity-50');
+        } else {
+          main?.classList.remove('pointer-events-none', 'opacity-50');
+        }
+      }, [editTable, addTable]);
+
 
 
   return (
-    <div className="flex flex-col items-center justify-start relative w-screen h-full bg-[#FFF4EE] py-20">
-        <nav>
-            NAVBAR: ...
-        </nav>
-        <div className='w-[90%] flex items-center justify-center gap-12'>
-            <Category/>
-            <FilterCell/>
-            <AddProductButton/>
+    <>
+        {
+            editTable ? <EditProduct setEditTable={setEditTable} currentProduct={currentProduct} /> : (addTable ? <AddProduct setAddTable={setAddTable} /> : <></>)
+        }
+        <div id='main' className="flex flex-col items-center justify-start relative w-screen h-full bg-[#FFF4EE] py-20">
+            <nav>
+                NAVBAR: ...
+            </nav>
+            <div className='w-[90%] flex items-center justify-center gap-12'>
+                <Category/>
+                <FilterCell/>
+                <AddProductButton setAddTable={setAddTable} />
+            </div>
+            <div className='grid grid-cols-5 gap-12 pt-3'>
+                {
+                    products.map((product, index) => {
+                        if(product.buyAmount.content === 0) return <ItemSupplierGray setEditTable={setEditTable} setCurrentProduct={setCurrentProduct} key={index} item={product}/>
+                        else return <ItemSupplier setEditTable={setEditTable} setCurrentProduct={setCurrentProduct} key={index} item={product}/>
+                    })
+                }
+            </div>
+            
         </div>
-        <div className='grid grid-cols-5 gap-12 pt-3'>
-            {
-                products.map((product, index) => {
-                    if(product.buyAmount.content === 0) return <ItemSupplierGray key={index} item={product}/>
-                    else return <ItemSupplier key={index} item={product}/>
-                })
-            }
-        </div>
-        
-    </div>
+    </>
+
   )
 }
 
