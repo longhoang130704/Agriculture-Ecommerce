@@ -7,7 +7,7 @@ const info = {
     supplierName: 'Khoa-chan co.'
 }
 
-const input = {
+const product = {
     productName: {
         title: 'Tên sản phẩm',
         id: 'productName'
@@ -37,7 +37,7 @@ const input = {
         id: 'packageUnit'
     },
     nutritionalValue: {
-        title: 'Giá trị dinh dưỡng',
+        title: 'Giá trị dinh dưỡng (kcal)',
         id: 'nutritionalValue'
     },
     description: {
@@ -99,19 +99,19 @@ const AddProduct = () => {
                         >
                             Choose a file
                         </label>
-                        <Input prop={input.linkImage} />
-                        <Input prop={input.amount} />
-                        <Input prop={input.harvestDay} />
-                        <Input prop={input.packageUnit} />
-                        <Input prop={input.nutritionalValue} />
+                        <Input prop={product.linkImage} />
+                        <Input prop={product.amount} />
+                        <Input prop={product.harvestDay} />
+                        <Input prop={product.packageUnit} />
+                        <Input prop={product.nutritionalValue} />
                     </div>
                     <div className='flex flex-col pl-4 pt-6 pr-6 gap-3 w-1/2'>
-                        <Input prop={input.productName} />
-                        <Input prop={input.buyPrice} />
-                        <Input prop={input.sellPrice} />
-                        <Input prop={input.numberOfReviews} />
-                        <Input prop={input.averageReview} />                        
-                        <TextAreaInput prop={input.description} />
+                        <Input prop={product.productName} />
+                        <Input prop={product.buyPrice} />
+                        <Input prop={product.sellPrice} />
+                        <Input prop={product.numberOfReviews} />
+                        <Input prop={product.averageReview} />                        
+                        <TextAreaInput prop={product.description} />
                     </div>
                     
 
