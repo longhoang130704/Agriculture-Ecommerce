@@ -14,12 +14,16 @@ import AddProduct from './components/AddProduct';
 import EditProduct from './components/EditProduct'
 import ProposeItem from './components/ProposeItem'
 import ProposePage from './pages/ProposePage';
+import Category from './components/Category';
+import AddProductButton from './components/AddProductButton'
+import FilterCell from './components/FilterCell'
+import StockPage from './pages/StockPage'
 const App = () => {
   
   return (
-    <ProposePage/>
 
     // <div className='bg-slate-300 flex flex-col items-center justify-center gap-10 p-10  w-screen'>
+      <StockPage/>
     // </div>
   )
 }
