@@ -7,7 +7,7 @@ const header = () => {
     return (
             <div className='header'>
                 <div className="header-contents">
-                    <h2>AgroVest is a platform connect farmer to customers, provide a safe place to sell and buy organic vegetable</h2>
+                    <h2>NiceFrais là một nền tảng kết nối nông dân với khách hàng, cùng cấp một nền tảng mua và bán an toàn khác sản phẩm sạch</h2>
                 </div>
             </div>
         

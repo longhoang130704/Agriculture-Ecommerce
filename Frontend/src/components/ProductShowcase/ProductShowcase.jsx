@@ -17,7 +17,7 @@ const ProductCard = ({ title, imageSrc, onClick }) => (
     <div className="overlay">
       <div className="content">
         <button className="learn-more">
-          <p>Learn more</p>
+          <p>Xem thêm</p>
           <img src={arrow_icon_w} alt="" />
         </button>
       </div>

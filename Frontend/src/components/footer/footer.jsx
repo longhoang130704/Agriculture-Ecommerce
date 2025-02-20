@@ -8,9 +8,9 @@ function footer() {
             <div className="footer-content">
                 <div className="footer-content-left">
                     <h2>VỀ CHÚNG TÔI</h2>
-                    <p>NiceFrais is a mini supermarket chain specializes in selling fresh food and necessities of a group of students of HCMUT. </p>
-                      <p>Business items: Safe, clean and fresh fruits and vegetables</p>
-                      <p>Bach Hoa Xanh brings to consumers: a diverse choice of goods and services, convenience, meeting the daily shopping needs of every family with the best quality and the most competitive prices.</p>
+                    <p>NiceFrais is là một chuỗi siêu thị nhỏ chuyên bán các loại nông sản tươi và các mặt hàng thiết yếu khác.</p>
+                    <p>Mặt hàng kinh doanh: Rau củ quả an toàn, sạch và tươi</p>
+                    <p>NiceFrais mang đến cho khác hàng: lựa chọn đa dạng về hàng hóa, tiện lợi, đáp ứng mọi nhu cầu hằng ngày của mọi gia đình với một mức giá vô cùng cạnh tranh</p>
 
                     {/* <div className="footer-social-icons">
                         <img src={assets.facebook_icon} alt=""></img>

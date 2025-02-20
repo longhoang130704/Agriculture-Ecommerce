@@ -1,0 +1,77 @@
+.loginPopUp{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(255, 255, 255, 0.47); */
+    backdrop-filter: blur(5px);
+    display: grid;
+}
+.loginPopUp-container{ 
+    place-self: center;
+    display: flex;
+    width: max(20vw, 300px);
+    height:max(25vw, max-content);
+    color: #000000;
+    background-color: #8EB486;
+    box-shadow: 4px 4px 10px 0 rgba(130, 145, 153, 0.8);
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 10px;
+    margin: 20px 0px 20px 0px;
+}
+.login-title img {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  display: block;
+}
+.login-title{
+    display: flex;
+    color: white;
+}
+.login-input{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 1px;
+
+}
+.login-input input{
+    padding: 8px;
+    border: none;
+    background-color: #8EB486;
+    border: 2px solid #FFFFFF;
+    border-radius: 50px;
+    color: white;
+}
+.login-input input::placeholder{
+    color: white;
+}
+
+
+.changeState-login{
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 1px;
+}
+.change-state{
+    border: 2px solid white;
+    padding: 8px;
+    border-radius: 50px;
+    color: white;
+}
+.continue-button{
+    border: 2px solid #A52223;
+    border-radius: 50px;
+    color: #8EB486;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    background-color: #0FFFC3;
+}
