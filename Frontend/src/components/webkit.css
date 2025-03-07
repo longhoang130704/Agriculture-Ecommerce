@@ -1,0 +1,13 @@
+.custom-scrollbar::-webkit-scrollbar {
+  width: 400px; /* Độ rộng của thanh cuộn */
+  height: 11px; /* Chiều cao của thanh cuộn ngang */
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #D9D9D9; /* Màu thanh cuộn */
+  border-radius: 20px; /* Bo góc */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #e5e7eb; /* Màu nền của track */
+  border-radius: 20px; /* Bo góc track */
+}

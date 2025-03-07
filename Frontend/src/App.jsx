@@ -1,42 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import { Button } from "@/components/ui/button"
-
-function App() {
-  const [count, setCount] = useState(0)
-
+import Item from './components/Item'
+import ItemSupplier from './components/ItemSupplier'
+import ItemSupplierGray from './components/ItemSupplierGray'
+import DiscountPopup from './components/DiscountPopup'
+import BonusPopup from './components/BonusPopup'
+import ExpiredPopup from './components/ExpiredPopup'
+import CartItem from './components/CartItem'
+import Login from './components/Login'
+import Signup from './components/Signup'
+import ChartItem, { ShortChartItem } from './components/ChartItem'
+import Input, { TextAreaInput } from './components/Input';
+import AddProduct from './components/AddProduct';
+import EditProduct from './components/EditProduct'
+import ProposeItem from './components/ProposeItem'
+import ProposePage from './pages/ProposePage';
+import Category from './components/Category';
+import AddProductButton from './components/AddProductButton'
+import FilterCell from './components/FilterCell'
+import StockPage from './pages/StockPage'
+const App = () => {
+  
   return (
-    <>
 
-
-      <div>
-        <Button className='border-red-700 bg-white text-cyan-300' onClick={() => alert('clicked')}>Click me</Button>
-      </div>
-
-
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    // <div className='bg-slate-300 flex flex-col items-center justify-center gap-10 p-10  w-screen'>
+      <StockPage/>
+    // </div>
   )
 }
 
