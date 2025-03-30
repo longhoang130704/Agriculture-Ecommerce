@@ -18,7 +18,7 @@ const FilterCell = () => {
 
   }, [])
   return (
-    <div  className="flex justify-center items-center gap-3 border-solid cursor-pointer box-border w-[580px] h-[90px] bg-[#FFFFFF] border-[2px] border-[#A52223] rounded-[50px]">
+    <div className="flex justify-center items-center gap-3 border-solid cursor-pointer box-border h-[90px] bg-[#FFFFFF] border-[2px] border-[#A52223] rounded-[50px]">
         <div  className="flex justify-center items-center gap-2 border-solid cursor-pointer box-border w-[300px] h-[60px] bg-[#FFFFFF] border-[2px] border-[#A52223] rounded-[50px]">
             <input id='findInput' placeholder='Tìm kiếm...' className="font-quicksand font-normal text-[20px] leading-[25px] text-[#000000]"
                 
