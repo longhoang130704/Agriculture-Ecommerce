@@ -14,8 +14,8 @@ const exploreMenu = ({category, setCategory}) => {
             const apiCategories = response.data.map((got) => ({
                 id: got._id,
                 categoryName: got.categoryName,
-                // : got.imageUrl,
-                image: menu_3,
+                image: got.imageUrl,
+                
             }));
             setCategories(apiCategories); // Cập nhật danh sách sản phẩm
             // setLoading(false); // Đánh dấu đã tải xong
@@ -34,11 +34,11 @@ const exploreMenu = ({category, setCategory}) => {
         <div className="explore-menu-list">
             {
                 categories.map((item, index) => {
-                    console.log(item.categoryName)
+                    // console.log(item.categoryName)
                     return (
-                        <div onClick={()=>setCategory(prev=>prev===item.categoryName?"All":item.categoryName)} key={index} className='explore-menu-list-item'>
+                        <div onClick={()=>setCategory(prev=>prev===item.categoryName?"All":item.categoryName)} key={index} className='explore-menu-list-item gap-4'>
                             <img className={category===item.categoryName?"active":""} src={item.image} alt="" />
-                            <p>{item.menu_name}</p>
+                            <div className='mt-2'>{item.categoryName}</div>
                         </div>
                     )  
                 })

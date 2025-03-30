@@ -25,8 +25,8 @@
     height: 10vw;
 }
 .explore-menu-list-item img{
-    width: 9vw;
-    height: 9vw;
+    width: 8vw;
+    height: 8vw;
     /* min-width: 80%; */
     cursor: pointer;
     transition: 0.15s;
@@ -40,7 +40,7 @@
 }
 .explore-menu-list-item img:hover{
     transition: all 0.3s ease;
-    width: 10vw;
-    height: 10vw;
+    width: 9vw;
+    height: 9vw;
 
 }

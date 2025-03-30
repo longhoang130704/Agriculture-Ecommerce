@@ -28,6 +28,7 @@ const loginPopUp = ({setShowLogin}) => {
         setData(data => ({ ...data, [name]: value }));
     }
 
+    const [noti, setNoti] = useState('');
     const onLogin = async (event) => {
         event.preventDefault();
         let newUrl = url;
@@ -36,19 +37,28 @@ const loginPopUp = ({setShowLogin}) => {
         } else {
             newUrl += "/api/user";
         }
-        const response = await axios.post(newUrl, data);
-        if (response.status === 200) {
-            setToken(response.data.token)
-            localStorage.setItem("token", response.data.token)
-            localStorage.setItem("userName", response.data.user.name)
-            setShowLogin(false)
-            alert("Đăng nhập thành công")
-        }else{
-            alert(response.data.message)
+
+        try {
+            const response = await axios.post(newUrl, data);
+            if (response.status === 200) {
+                setToken(response.data.token);
+                localStorage.setItem("token", response.data.token);
+                localStorage.setItem("userName", response.data.user.name);
+                setShowLogin(false);
+                alert("Đăng nhập thành công");
+            }
+        } catch (error) {
+            if (error.response) {
+                // Lỗi từ phía server (4xx, 5xx)
+                console.log(error.response.data.message);
+                setNoti(error.response.data.message);
+            } else {
+                // Lỗi khác (ví dụ: không kết nối được server)
+                console.log("Đã xảy ra lỗi:", error.message);
+                setNoti("Đã xảy ra lỗi, vui lòng thử lại sau.");
+            }
         }
-
-    }
-
+    };
 
 
     return (
@@ -93,6 +103,18 @@ const loginPopUp = ({setShowLogin}) => {
             <div className="use-term">
                 <p>Bằng việc tiếp tục, tôi đồng ý với điều khoản sử dụng và chính sách quyền riêng tư.</p>
             </div>
+            <div className="items-center justify-center text-center text-white font-bold">
+            {noti && (
+                <p>
+                    {noti === 'User not found' 
+                        ? "Không tìm thấy thông tin người dùng" 
+                        : noti === 'Invalid password' 
+                        ? "Sai mật khẩu" 
+                        : noti}
+                </p>
+            )}
+            </div>
+
             </form>
         </div>
 

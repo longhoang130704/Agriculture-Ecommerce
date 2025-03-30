@@ -43,8 +43,8 @@ return (
                                                 <img src={arrow_icon_w} className='w-7 h-7' />
                                         </div>
                                         :
-                                        <div className="border gap-2 flex items-center p-1 rounded-[20px] border-2 border-[#A52223] ">
-                                                <div>{localStorage.getItem("userName")}</div>
+                                        <div className=" gap-2 flex items-center p-1 rounded-[20px] border-2 border-[#A52223] ">
+                                                <div onClick={logout}>{localStorage.getItem("userName")}</div>
                                                 {/* <div onClick={logout} className='cursor-pointer bg-[#8EB486] rounded-full '><StartRoundedIcon/></div> */}
                                                 <img src={arrow_icon_w} className='w-7 h-7' />
                                         </div>
