@@ -1,7 +1,7 @@
 
 const Input = (data) => {
   const field = data.prop
-  console.log(field);
+ // console.log(field);
   
   const getLink = (event) => {
     if(data.setLinkImage) {

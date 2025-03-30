@@ -1,8 +1,8 @@
 import { useState } from "react";
 import confirmAdd from "../assets/icons/adjustPriceIconGreen.png";
 import closeIcon from "../assets/icons/close_category.png";
-import axios from 'axios'
-
+import axios from "axios";
+import { toast } from "sonner";
 import Input from "./Input";
 
 const category = {
@@ -40,19 +40,21 @@ const AddCategory = (prop) => {
     console.log("--------------------");
 
     try {
-        const response = await axios.post(
-            'https://agri-eco-order-component.onrender.com/api/category',
-             formData,
-            {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-        console.log(response);
-        prop.setCategories(prop.categories.concat(response.data));
-    }
-    catch (error) {
-        console.log('Error when create category' + error);
+      const response = await axios.post(
+        "https://agri-eco-order-component.onrender.com/api/category",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response);
+      prop.setCategories(prop.categories.concat(response.data));
+      toast.success("Thêm phân loại thành công!!");
+    } catch (error) {
+      toast.error("Thêm phân loại không thành công!!");
+      console.log("Error when create category" + error);
     }
   };
   const handleFileChange = () => {

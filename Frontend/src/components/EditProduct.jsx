@@ -3,57 +3,80 @@ import confirmEdit from "../assets/icons/adjustPriceIconGreen.png";
 import exitIcon from "../assets/icons/close_cartitem.png";
 import checkIcon from "../assets/icons/visibleCheckIcon.png";
 import Input, { TextAreaInput } from "../components/Input";
-
-const product = {
-  productName: {
-    title: "Tên sản phẩm",
-    id: "productName",
-  },
-  buyPrice: {
-    title: "Giá mua vào",
-    id: "buyPrice",
-  },
-  sellPrice: {
-    title: "Giá bán ra",
-    id: "sellPrice",
-  },
-  imageUrl: {
-    title: "Đường dẫn hình ảnh",
-    id: "imageUrl",
-  },
-  amount: {
-    title: "Số lượng",
-    id: "amount",
-  },
-  harvestDay: {
-    title: "Ngày thu hoạch",
-    id: "harvestDay",
-  },
-  packageUnit: {
-    title: "Đơn vị đóng gói (/1 túi)",
-    id: "packageUnit",
-  },
-  nutritionalValue: {
-    title: "Giá trị dinh dưỡng (kcal)",
-    id: "nutritionalValue",
-  },
-  description: {
-    title: "Mô tả",
-    id: "description",
-  },
-  numberOfReviews: {
-    title: "Tổng số đánh giá",
-    id: "numberOfReviews",
-  },
-  averageReview: {
-    title: "Đánh giá trung bình",
-    id: "averageReview",
-  },
-};
+import axios from "axios";
+import { toast } from "sonner";
 
 const EditProduct = (prop) => {
   const currentProduct = prop.currentProduct;
+  const product = {
+    supplierId: {
+      title: "",
+      id: "supplierId",
+      content: "67dbb09b784946e74d0cb022", // fake
+    },
+    inventoryId: {
+      title: "",
+      id: "inventoryId",
+      content: "67dbb09b784946e74d0cb0d3", // hardcode
+    },
+    productName: {
+      title: "Tên sản phẩm",
+      id: "productName",
+      content: currentProduct.productName,
+    },
+    description: {
+      title: "Mô tả",
+      id: "description",
+      content: currentProduct.description,
+    },
+    imageUrl: {
+      title: "Đường dẫn hình ảnh",
+      id: "imageUrl",
+      content: currentProduct.imageUrl,
+    },
+    brand: {
+      title: "Nhãn hiệu",
+      id: "brand",
+      content: currentProduct.brand,
+    },
+    quantityPerUnit: {
+      title: "Khối lượng mỗi đơn vị",
+      id: "quantityPerUnit",
+      content: currentProduct.quantityPerUnit,
+    },
+    buyPrice: {
+      title: "Giá mua vào",
+      id: "buyPrice",
+      content: currentProduct.buyPrice,
+    },
+    sellPrice: {
+      title: "Giá bán ra",
+      id: "sellPrice",
+      content: currentProduct.sellPrice,
+    },
+    rating: {
+      title: "Đánh giá trung bình",
+      id: "rating",
+      content: currentProduct.rating,
+    },
+    numberReviews: {
+      title: "Tổng số đánh giá",
+      id: "numberReviews",
+      content: currentProduct.numberReviews,
+    },
+    harvestDay: {
+      title: "Ngày thu hoạch",
+      id: "harvestDay",
+      content: currentProduct.harvestDay,
+    },
+    stock_quantity: {
+      title: "Số lượng",
+      id: "stock_quantity",
+      content: currentProduct.stock_quantity,
+    },
+  };
   const [checked, setChecked] = useState(true);
+  const [imageUrl, setLinkImage] = useState(product.imageUrl.content);
 
   const handleCheckboxClick = () => {
     const productImage = document.getElementById("productImage");
@@ -76,9 +99,8 @@ const EditProduct = (prop) => {
     prop.setEditTable(false);
     console.log("close");
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    prop.setEditTable(false);
     let formData = new FormData(event.target);
     console.log("-----------------EditFormData-------------------------");
 
@@ -86,6 +108,26 @@ const EditProduct = (prop) => {
       console.log(`${key}: ${value}`);
     }
     console.log("------------------------------------------");
+    try {
+      const res = await axios.put(
+        `https://agri-eco-order-component.onrender.com/api/product/${currentProduct._id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(res);
+      prop.setProducts(
+        prop.products.map((p) => (product._id === p._id ? res.data : p))
+      );
+      toast.success("Chỉnh sửa sản phẩm thành công!!");
+    } catch (error) {
+      console.log("Error when update product" + error);
+      toast.error("Chỉnh sửa sản phẩm không thành công!!");
+    }
+    prop.setEditTable(false);
   };
   const handleFileChange = () => {
     console.log("handle file change");
@@ -93,23 +135,10 @@ const EditProduct = (prop) => {
 
   console.log(currentProduct);
 
-  product.productName.content = currentProduct.productName;
-  product.buyPrice.content = currentProduct.buyPrice;
-  product.sellPrice.content = currentProduct.sellPrice;
-  product.imageUrl.content = currentProduct.imageUrl;
-  product.amount.content = currentProduct.amount;
-  product.harvestDay.content = currentProduct.harvestDay;
-  product.packageUnit.content = currentProduct.packageUnit;
-  product.nutritionalValue.content = currentProduct.nutritionalValue;
-  product.description.content = currentProduct.description;
-  product.numberOfReviews.content = currentProduct.numberOfReviews;
-  product.averageReview.content = currentProduct.averageReview;
-  
-
   return (
-    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[60%] h-[80%] bg-[#C4FFB8] rounded-[40px]">
+    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[60%] pb-4 px-2 bg-[#C4FFB8] rounded-[40px]">
       <form action="post" onSubmit={handleSubmit} className="flex">
-        <div className="flex flex-col pl-10 pt-6 pr-4 gap-8 w-1/2">
+        <div className="flex flex-col pl-10 pt-6 pr-4 gap-4 w-1/2">
           <div className="flex items-center justify-center">
             <input
               type="file"
@@ -124,9 +153,9 @@ const EditProduct = (prop) => {
               htmlFor="imageEdit"
               id="imageLabelEdit"
             >
-              {checked && product.imageUrl.content ? (
+              {checked && imageUrl ? (
                 <img
-                  src={product.imageUrl.content}
+                  src={imageUrl}
                   className="w-full h-full object-cover rounded-[20px]"
                   alt="Image preview"
                 />
@@ -135,11 +164,26 @@ const EditProduct = (prop) => {
               )}
             </label>
           </div>
-          <Input prop={product.imageUrl} />
-          <Input prop={product.harvestDay} />
-          <Input prop={product.importAmount} />
-          <Input prop={product.buyAmount} />
-          <Input prop={product.nutritionalValue} />
+          <Input prop={product.imageUrl} setLinkImage={setLinkImage} />
+          <div className="flex flex-col items-start gap-1 w-full pl-1">
+            <label
+              htmlFor={product.harvestDay.id}
+              className="w-full h-[24px] font-quicksand font-bold text-[20px] leading-[28px] text-[#000000] flex-none self-stretch flex-grow-0"
+            >
+              {product.harvestDay.title}
+            </label>
+            <input
+              id={product.harvestDay.id}
+              defaultValue={product.harvestDay.content}
+              required
+              name={product.harvestDay.id}
+              type="date"
+              className="w-full h-[48px] bg-[#C4FFB8]  pl-4 py-1.5 border-[4px] border-solid border-[#FFFFFF] rounded-[20px] box-border font-quicksand font-normal text-[24px] leading-[30px] text-[#000000]"
+            />
+          </div>
+          <Input prop={product.stock_quantity} />
+          <Input prop={product.quantityPerUnit} />
+          <Input prop={product.brand} />
           <div className="relative flex items-center justify-start gap-6 pt-2 pl-2">
             <img
               src={checkIcon}
@@ -158,13 +202,12 @@ const EditProduct = (prop) => {
             </span>
           </div>
         </div>
-        <div className="flex flex-col pl-4 pt-6 pr-10 gap-8 w-1/2">
+        <div className="flex flex-col pl-4 pt-6 pr-10 gap-5 w-1/2">
           <Input prop={product.productName} />
-          <Input prop={product.packageUnit} />
           <Input prop={product.buyPrice} />
           <Input prop={product.sellPrice} />
-          <Input prop={product.averageReview} />
-          <Input prop={product.numberOfReviews} />
+          <Input prop={product.rating} />
+          <Input prop={product.numberReviews} />
           <Input prop={product.description} />
           <div className="flex justify-end pt-10 gap-2">
             <button
