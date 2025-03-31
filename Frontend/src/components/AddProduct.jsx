@@ -150,13 +150,13 @@ const AddProduct = (prop) => {
 
   return (
     <>
-      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col w-[1428px] h-[900px] bg-[#FFF4EE] gap-6 pt-6">
+      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col w-[90%] md:w-2/3 2xl:w-3/4 h-auto bg-[#FFF4EE] gap-6 py-6">
         <span className="font-quicksand font-bold text-[36px] leading-[45px] text-center text-[#000000]">
           THÊM SẢN PHẨM
         </span>
-        <div className="w-full h-[90%] flex justify-center items-start gap-6 px-4">
-          <div className="w-[65%] h-[90%] bg-[#C4FFB8] rounded-[40px]">
-            <form action="" onSubmit={handleSubmit} className="flex relative">
+        <div className="w-full flex h-[90%] flex-col md:flex-row justify-center items-start gap-6 px-4">
+          <div className="w-full p-6 md:w-[65%] h-[90%] bg-[#C4FFB8] rounded-[40px]">
+            <form action="" onSubmit={handleSubmit} className="flex">
               <div className="flex flex-col pl-6 pt-6 pr-4 gap-3 w-1/2">
                 <input
                   type="file"
@@ -167,7 +167,7 @@ const AddProduct = (prop) => {
                   onChange={handleFileChange}
                 />
                 <label
-                  className="font-quicksand font-normal text-[20px] leading-[28px] text-center underline text-black w-[400px] h-[200px] justify-center flex items-center  bg-[#D9D9D9] rounded-[20px] cursor-pointer"
+                  className="font-quicksand font-normal text-[20px] leading-[28px] text-center underline text-black w-full h-full md:w-full md:h-[200px] justify-center flex items-center  bg-[#D9D9D9] rounded-[20px] cursor-pointer"
                   htmlFor="imageAdd"
                   id="imageLabelAdd"
                 >
@@ -210,12 +210,23 @@ const AddProduct = (prop) => {
                 <Input prop={product.rating} />
                 <TextAreaInput prop={product.description} />
               </div>
-
+              <button
+                onClick={closeAddForm}
+                className="bg-[#FFF4EE] md:p-2 absolute bottom-8  md:bottom-10 md:right-[225px] flex justify-center items-center gap-1 h-[56px] border-solid border-[2.2px] border-[#8EB486] rounded-[40px] box-border cursor-pointer"
+              >
+                <span className="font-quicksand font-bold pl-3 md:pl-1 text-[20px] leading-[25px] text-center text-[#000000]">
+                  Thoát
+                </span>
+                <img 
+                  className="w-[34px] h-[34px] p-1" 
+                  src={closeIcon} 
+                  alt="" />
+              </button>
               <button
                 type="submit"
-                className="bg-[#FFF4EE] absolute bottom-[-130px] right-[-420px] flex justify-center items-center gap-1 h-[56px] border-solid border-[2.2px] border-[#8EB486] rounded-[40px] box-border cursor-pointer"
+                className="bg-[#FFF4EE] md:p-2 absolute bottom-8 right-10 md:bottom-10 md:right-4 flex justify-center items-center gap-1 h-[56px] border-solid border-[2.2px] border-[#8EB486] rounded-[40px] box-border cursor-pointer"
               >
-                <span className="font-quicksand font-bold pl-3 text-[20px] leading-[25px] text-center text-[#000000]">
+                <span className="font-quicksand font-bold pl-3 md:pl-1 text-[20px] leading-[25px] text-center text-[#000000]">
                   Xác nhận thêm
                 </span>
                 <img
@@ -224,23 +235,15 @@ const AddProduct = (prop) => {
                   alt=""
                 />
               </button>
-              <button
-                onClick={closeAddForm}
-                className="bg-[#FFF4EE] absolute bottom-[-60px] right-[-420px] flex justify-center items-center gap-1 h-[56px] border-solid border-[2.2px] border-[#8EB486] rounded-[40px] box-border cursor-pointer"
-              >
-                <span className="font-quicksand font-bold pl-3 text-[20px] leading-[25px] text-center text-[#000000]">
-                  Thoát
-                </span>
-                <img className="w-[34px] h-[34px] p-1" src={closeIcon} alt="" />
-              </button>
+              
             </form>
           </div>
-          <div className="flex flex-col gap-10 pt-8 w-[30%] h-[75%] bg-[#0FFFC3] rounded-[40px]">
+          <div className="flex items-start pr-3 justify-around md:flex-col md:gap-10 pb-6 md:pb-0 pt-8 w-full md:w-[30%] h-[75%] bg-[#0FFFC3] rounded-[40px]">
             <div className="flex flex-col pl-7 gap-0.5">
               <span className="text-left font-quicksand font-bold text-[24px] leading-[30px] text-[#2F2F2F]">
                 Nhà cung cấp
               </span>
-              <span className="w-[356px] h-[38px] font-quicksand font-normal text-[20px] leading-[25px] text-[#2F2F2F]">
+              <span className="md:w-[356px] md:h-[38px] font-quicksand font-normal text-[20px] leading-[25px] text-[#2F2F2F]">
                 {info.supplierName} (bạn)
               </span>
             </div>
@@ -249,12 +252,12 @@ const AddProduct = (prop) => {
                 Thời gian thêm sản phẩm
               </span>
 
-              <span className="w-[356px] h-[38px] font-quicksand font-normal text-[20px] leading-[25px] text-[#2F2F2F]">
+              <span className="md:w-[356px] md:h-[38px] font-quicksand font-normal text-[20px] leading-[25px] text-[#2F2F2F]">
                 {formattedDate} GMT+7
               </span>
             </div>
 
-            <div className="flex flex-col gap-3 pb-10 pl-5 max-w-[90%]">
+            <div className="flex flex-col gap-3 pb-10 pl-5 md:max-w-[90%]">
               <label
                 htmlFor="categories"
                 className=" w-full h-[24px] font-quicksand font-bold text-[20px] leading-[28px] text-[#000000] flex-none self-stretch flex-grow-0"
@@ -267,7 +270,7 @@ const AddProduct = (prop) => {
                 required
                 name="categories"
                 defaultValue=""
-                className="w-full h-[48px] bg-[#C4FFB8] pl-4 py-1.5 border-[4px] border-solid border-[#FFFFFF] rounded-[20px] box-border font-quicksand font-normal text-[24px] leading-[30px] text-[#000000]"
+                className="w-auto md:w-full md:h-[48px] bg-[#C4FFB8] pl-1 md:pl-2 py-1.5 md:border-[4px] border-solid border-[#FFFFFF] rounded-[20px] box-border font-quicksand font-normal text-[24px] leading-[30px] text-[#000000]"
               >
                 <option value="" disabled>
                   Chọn phân loại
@@ -283,7 +286,7 @@ const AddProduct = (prop) => {
               )}
             </div>
 
-            <div className="relative flex items-center justify-start gap-6 pl-6">
+            <div className="relative flex items-center justify-start p-2 gap-6 pl-6">
               <img
                 src={checkIcon}
                 id="productImage"

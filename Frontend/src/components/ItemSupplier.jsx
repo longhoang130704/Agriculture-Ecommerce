@@ -47,21 +47,21 @@ const ItemSupplier = (prop) => {
 
   return (
     <>
-      <div className='w-[280px] h-[390px] box-border flex flex-col justify-between items-center px-4 py-3.5  relative bg-white border-[2.2px] border-solid border-[#997C70] shadow-[5px_4px_4px_#8EB486] rounded-[40px]'>
-        <img className='w-[100%] max-h-[39%] rounded-[22px]   flex-none flex-grow-0' src={item.imageUrl} alt="" />
-        <span className='font-quicksand font-bold text-[32px] leading-[44px] text-center text-black flex-none flex-grow-0 overflow-hidden whitespace-nowrap text-ellipsis w-full'>{item.productName}</span>
-        <span className='font-quicksand font-normal text-[20px] leading-[24px] text-center text-black'>Kho: chua lay duoc</span>
-        <span className='font-normal text-[24px] leading-[36px] text-center text-[#C5D724] flex-none flex-grow-0'>
+      <div className='w-[280px] h-[390px] scale-105 box-border flex flex-col justify-between items-center px-4 py-3.5  relative bg-white border-[2.2px] border-solid border-[#997C70] shadow-[5px_4px_4px_#8EB486] rounded-[40px]'>
+        <img className='w-[100%]w-full max-h-[180px] sm:max-h-[39%] rounded-[22px] object-cover' src={item.imageUrl} alt="" />
+        <span className='font-quicksand font-bold text-[24px] sm:text-[32px] leading-[32px] sm:leading-[44px] text-center text-black overflow-hidden whitespace-nowrap text-ellipsis w-full'>{item.productName}</span>
+        <span className='font-quicksand font-normal text-[16px] sm:text-[20px] leading-[20px] sm:leading-[24px] text-center text-black'>Kho: chua lay duoc</span>
+        <span className='font-normal text-[20px] sm:text-[24px] leading-[28px] sm:leading-[36px] text-center text-[#C5D724]'>
         {formatCurrency(item.sellPrice)} VND</span>
 
         <div className='w-[90%] box-border flex justify-center items-center gap-2 py-2 '>
-          <div onClick={handleEditProduct} className='flex justify-center items-center w-[58%] bg-white border-[2.2px] border-[#8EB486] border-solid rounded-[50px] box-border cursor-pointer'>
-            <span className='flex justify-center items-center h-[100%] w-[70%] pl-2 font-quicksand font-bold text-[20px] leading-[28px] text-center text-black'>Chi tiết</span>
-            <img className='w-[36px] h-[36px] p-1' src={detailIcon} alt="" />
+          <div onClick={handleEditProduct} className='flex justify-center items-center w-[55%] sm:w-[58%] bg-white border-[2.2px] border-[#8EB486] border-solid rounded-[50px] box-border cursor-pointer py-2 sm:py-0'>
+            <span className='flex justify-center items-center h-full w-[70%] pl-2 font-quicksand font-bold text-[16px] sm:text-[20px] leading-[24px] sm:leading-[28px] text-center text-black'>Chi tiết</span>
+            <img className='w-6 h-6 sm:w-[36px] sm:h-[36px] p-1' src={detailIcon} alt="" />
           </div>
-          <div onClick={handleDeleteProduct} className='flex justify-center items-center w-[40%] bg-white border-[2.2px] border-[#8EB486] border-solid rounded-[50px] box-border cursor-pointer'>
-            <span className='flex justify-center items-center h-[100%] w-[70%] pl-2 font-quicksand font-bold text-[20px] leading-[28px] text-center text-black'>Xoá</span>
-            <img className='w-[36px] h-[36px] p-1' src={deleteIcon} alt="" />
+          <div onClick={handleDeleteProduct} className='flex justify-center items-center w-[35%] sm:w-[40%] bg-white border-[2.2px] border-[#8EB486] border-solid rounded-[50px] box-border cursor-pointer py-2 sm:py-0'>
+            <span className='flex justify-center items-center h-full w-[70%] pl-2 font-quicksand font-bold text-[16px] sm:text-[20px] leading-[24px] sm:leading-[28px] text-center text-black'>Xoá</span>
+            <img className='w-6 h-6 sm:w-[36px] sm:h-[36px] p-1' src={deleteIcon} alt="" />
           </div>
         </div>
         

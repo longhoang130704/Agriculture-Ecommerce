@@ -73,24 +73,24 @@ const EditCategory = (prop) => {
     console.log("handle file change");
   };
   return (
-    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
-      <div className="bg-[#C4FFB8] w-full rounded-[40px] relative flex flex-col items-center justify-center">
-        <span className="font-quicksand font-bold text-[36px] leading-[45px] text-center text-[#000000] p-9">
+    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-3/4 sm:w-3/5  md:w-1/2 h-auto ">
+      <div className="bg-[#C4FFB8] w-full rounded-[40px] relative flex flex-col items-center justify-center p-6 gap-10 md:gap-0 md:p-9">
+        <span className="font-quicksand font-bold text-[36px] leading-[45px] text-center text-[#000000]">
           CHỈNH SỬA PHÂN LOẠI
         </span>
         <img
           src={closeIcon}
           onClick={closeEditForm}
-          className="absolute top-6 right-6 w-10 h-10 cursor-pointer"
+          className="absolute top-6 right-6 md:top-6 md:right-6 w-12 h-12 md:w-10 md:h-10 cursor-pointer"
           alt=""
         />
 
         <form
           action=""
           onSubmit={handleSubmit}
-          className="w-full h-full flex items-center justify-center gap-10"
+          className="w-full h-full flex flex-col xl:flex-row items-center justify-center gap-6 md:gap-10"
         >
-          <div className="w-1/2 pl-8 flex flex-col items-start justify-start gap-10">
+          <div className="w-[90%] md:w-1/2 pl-8 flex flex-col items-start justify-start gap-6 md:gap-10">
             <input
               type="file"
               name="imageEdit"
@@ -116,15 +116,15 @@ const EditCategory = (prop) => {
             </label>
             <button
               type="submit"
-              className="bg-transparent p-1 mb-8 flex justify-center items-center gap-1 border-solid border-[2.2px] border-[#8EB486] rounded-[40px] box-border cursor-pointer"
+              className="bg-transparent p-2 md:p-1 m-0 md:mb-8 flex justify-center items-center gap-1 border-solid border-[2.2px] border-[#8EB486] rounded-[40px] box-border cursor-pointer"
             >
-              <span className="font-quicksand font-bold pl-1 text-[16px] leading-[20px] text-center text-[#000000]">
+              <span className="font-quicksand font-bold pl-1 text-[28px] sm:text-[24px] leading-[26px] sm:leading-[30px] text-center text-[#000000]">
                 Xác nhận
               </span>
               <img className="w-[34px] h-[34px] p-1" src={confirmEdit} alt="" />
             </button>
           </div>
-          <div className="w-1/2 flex flex-col items-center justify-center gap-4 pr-10 pb-6">
+          <div className="w-full sm:w-1/2 flex flex-col items-center justify-center gap-4 pr-4 md:pr-10 pb-4 md:pb-6">
             <Input prop={categoryAttribute.categoryName} />
             <Input
               prop={categoryAttribute.imageUrl}
@@ -144,7 +144,7 @@ const EditCategory = (prop) => {
                 name={categoryAttribute.description.id}
                 rows={3}
                 type="text"
-                className="w-full resize-none bg-[#C4FFB8] pl-4 py-1.5 border-[4px] border-solid border-[#FFFFFF] rounded-[20px] box-border font-quicksand font-normal text-[24px] leading-[30px] text-[#000000]"
+                className="w-full resize-none bg-[#C4FFB8] pl-4 py-1.5 border-[4px] border-solid border-[#FFFFFF] rounded-[20px] box-border font-quicksand font-normal text-[28px] sm:text-[24px] leading-[26px] sm:leading-[30px] text-[#000000]"
               />
             </div>
           </div>

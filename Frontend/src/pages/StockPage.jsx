@@ -148,10 +148,10 @@ const StockPage = () => {
       )}
       <div
         id="main"
-        className="flex flex-col items-center justify-start relative w-full h-full gap-20 bg-[#FFF4EE] py-20"
+        className=" 2xl:w-[99vw] flex flex-col items-center justify-start relative h-full gap-6 xl:gap-20 bg-[#FFF4EE] py-20 px-10"
       >
         <nav>NAVBAR: ...</nav>
-        <div className="w-full flex items-center justify-around gap-12">
+        <div className="w-full flex flex-col 2xl:flex-row items-center justify-center md:justify-around gap-6 xl:gap-4 xl:px-3">
           <Category
             categories={categories}
             currentCategory={currentCategory}
@@ -170,12 +170,12 @@ const StockPage = () => {
             setSearchTerm={setSearchTerm}
           />
         </div>
-        <div className="flex items-center justify-center gap-28">
+        <div className="w-full flex items-center justify-center gap-4 md:gap-28">
           <AddCategoryButton setAddCategory={setAddCategory} />
           <AddProductButton setAddTable={setAddTable} />
         </div>
-        <div className="grid grid-cols-5 gap-12 pt-3">
-          {filterProducts.map((product, index) => {
+        <div className="grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8 pt-3">
+        {filterProducts.map((product, index) => {
             if (product.sellPrice !== 0)
               return (
                 <ItemSupplier

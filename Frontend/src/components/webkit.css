@@ -43,12 +43,12 @@
   pointer-events: none;
 }
 
-.scroll-category::before {
+/* .scroll-category::before {
   left: 0;
   background: #FFF4EE
-}
+} */
 
-.scroll-category::after {
+/* .scroll-category::after {
   right: 0;
   background: #FFF4EE
-}
+} */
