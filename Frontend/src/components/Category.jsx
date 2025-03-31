@@ -1,48 +1,45 @@
-import bestSelling from '../assets/images/bestSellingCatagory.png'
-import fruit from '../assets/images/fruitCategory.png'
-import vegetable from '../assets/images/vegetableCategory.png'
-import { useState } from 'react';
+import { useEffect, useState } from "react";
+import CategoryItem from "./CategoryItem";
+import "./webkit.css";
 
-const Category = () => {
+const Category = (prop) => {
+  const categories = prop.categories;
 
-    const [categories, setCategories] = useState('best')
+  const [rightMouse, setRightMouse] = useState("");
+
+  useEffect(() => {
     
+    if (prop.editCategory) {
+      setRightMouse('')
+    }
+  }, [prop.editCategory])
 
   return (
-    <div className='flex justify-center items-center gap-4'>
-        <div onClick={() => setCategories('best')} className='flex flex-col items-center justify-center gap-2 px-8 cursor-pointer'>
-            <img 
-                className={`border-solid rounded-full border-8 ${categories === 'best' ? 'border-pink-400' : 'border-gray-100'}`} 
-                src={bestSelling} 
-                alt="" 
-            />
-            <span className="font-quicksand font-bold text-[32px] leading-[40px] text-[#000000]">
-                Bán chạy
-            </span>
+    <>
+      <div className="relative w-1/2 mt-10" onClick={() => setRightMouse("")}>
+        <div className="scroll-category flex items-center gap-4 px-6">
+          {categories.map((category, index) => {
+            return (
+              <CategoryItem
+                key={index}
+                category={category}
+                categories={categories}
+                editCategory={prop.editCategory}
+                setEditCategory={prop.setEditCategory}
+                rightMouse={rightMouse}
+                setRightMouse={setRightMouse}
+                currentCategory={prop.currentCategory}
+                setCurrentCategory={prop.setCurrentCategory}
+                setCategories={prop.setCategories}
+                setEditingCategory={prop.setEditingCategory}
+              />
+            );
+          })}
+        </div>
+      </div>
+      
+    </>
+  );
+};
 
-        </div>
-        <div onClick={() => setCategories('fruit')} className='flex flex-col items-center justify-center gap-2 px-8 cursor-pointer'>
-            <img
-                className={`border-solid rounded-full border-8 ${categories === 'fruit' ? 'border-pink-400' : 'border-gray-100'}`}
-                src={fruit} 
-                alt="" 
-            />
-            <span className="font-quicksand font-bold text-[32px] leading-[40px] text-[#000000]">
-                Trái cây
-            </span>
-        </div>
-        <div onClick={() => setCategories('vegetable')} className='flex flex-col items-center justify-center gap-2 px-8 cursor-pointer'>
-            <img 
-                className={`border-solid rounded-full border-8 ${categories === 'vegetable' ? 'border-pink-400' : 'border-gray-100'}`} 
-                src={vegetable} 
-                alt="" 
-            />
-            <span className="font-quicksand font-bold text-[32px] leading-[40px] text-[#000000]">
-                Rau củ
-            </span>
-        </div>
-    </div>
-  )
-}
-
-export default Category
+export default Category;
