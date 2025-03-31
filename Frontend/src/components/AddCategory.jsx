@@ -61,24 +61,24 @@ const AddCategory = (prop) => {
     console.log("handle file change");
   };
   return (
-    <div className="fixed top-1/2 left-1/2 w-1/2 h-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
-      <div className="bg-[#C4FFB8] w-full rounded-[40px] relative flex flex-col items-center justify-center">
-        <span className="font-quicksand font-bold text-[36px] leading-[45px] text-center text-[#000000] p-9">
+    <div className="fixed top-1/2 left-1/2 w-3/5 sm:w-3/4 md:w-1/2 h-auto -translate-x-1/2 -translate-y-1/2 z-50">
+      <div className="bg-[#C4FFB8] w-full rounded-[40px] relative flex flex-col items-center justify-center p-6">
+        <span className="font-quicksand font-bold text-[24px] sm:text-[30px] md:text-[36px] leading-[32px] sm:leading-[40px] text-center text-[#000000] py-4 sm:py-6">
           THÊM PHÂN LOẠI
         </span>
         <img
           src={closeIcon}
           onClick={closeAddForm}
-          className="absolute top-6 right-6 w-10 h-10 cursor-pointer"
+          className="absolute top-4 right-4 sm:top-6 sm:right-6 w-12 sm:w-10 h-12 sm:h-10 cursor-pointer"
           alt=""
         />
 
         <form
           action=""
           onSubmit={handleSubmit}
-          className="w-full h-full flex items-center justify-center gap-10"
+          className="w-full h-full flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10"
         >
-          <div className="w-1/2 pl-8 flex flex-col items-start justify-start gap-10">
+          <div className="w-4/5 md:w-1/2 pl-8 flex flex-col items-start justify-start gap-10">
             <input
               type="file"
               name="imageAdd"
@@ -88,7 +88,7 @@ const AddCategory = (prop) => {
               onChange={handleFileChange}
             />
             <label
-              className="font-quicksand font-normal text-[20px] leading-[28px] text-center underline text-black w-full h-[210px] justify-center flex items-center  bg-[#D9D9D9] rounded-[20px] cursor-pointer"
+              className="font-quicksand font-normal text-[28px] md:text-[20px] leading-[28px] text-center underline text-black w-full h-[300px] md:h-[210px] justify-center flex items-center bg-[#D9D9D9] rounded-[20px] cursor-pointer"
               htmlFor="imageAdd"
               id="imageLabelAdd"
             >
@@ -104,21 +104,21 @@ const AddCategory = (prop) => {
             </label>
             <button
               type="submit"
-              className="bg-transparent p-1 mb-8 flex justify-center items-center gap-1 border-solid border-[2.2px] border-[#8EB486] rounded-[40px] box-border cursor-pointer"
+              className="bg-transparent p-2 py-4 mb-8 flex justify-center items-center gap-1 border-solid border-[2.2px] border-[#8EB486] rounded-[40px] box-border cursor-pointer"
             >
-              <span className="font-quicksand font-bold pl-1 text-[16px] leading-[20px] text-center text-[#000000]">
+              <span className="font-quicksand font-bold pl-1 text-[28px] sm:text-[24px] leading-[26px] sm:leading-[30px] text-center text-[#000000]">
                 Xác nhận thêm
               </span>
               <img className="w-[34px] h-[34px] p-1" src={confirmAdd} alt="" />
             </button>
           </div>
-          <div className="w-1/2 flex flex-col items-center justify-center gap-4 pr-10 pb-6">
+          <div className="w-full sm:w-1/2 flex flex-col items-center justify-center gap-4 sm:gap-6 pr-10 pb-6">
             <Input prop={category.categoryName} />
             <Input prop={category.imageUrl} setLinkImage={setLinkImage} />
             <div className="flex flex-col items-start gap-1 w-full">
               <label
                 htmlFor={category.description.id}
-                className="w-full font-quicksand font-bold text-[20px] leading-[28px] text-[#000000] flex-none self-stretch flex-grow-0"
+                className="w-full font-quicksand font-bold text-[28px] sm:text-[20px] leading-[26px] text-[#000000] flex-none self-stretch flex-grow-0"
               >
                 {category.description.title}
               </label>
@@ -129,7 +129,7 @@ const AddCategory = (prop) => {
                 name={category.description.id}
                 rows={3}
                 type="text"
-                className="w-full resize-none bg-[#C4FFB8] pl-4 py-1.5 border-[4px] border-solid border-[#FFFFFF] rounded-[20px] box-border font-quicksand font-normal text-[24px] leading-[30px] text-[#000000]"
+                className="w-full resize-none bg-[#C4FFB8] pl-4 py-1.5 border-[4px] border-solid border-[#FFFFFF] rounded-[20px] box-border font-quicksand font-normal text-[28px] sm:text-[24px] leading-[26px] sm:leading-[30px] text-[#000000]"
               />
             </div>
           </div>

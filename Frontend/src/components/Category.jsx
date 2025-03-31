@@ -16,8 +16,8 @@ const Category = (prop) => {
 
   return (
     <>
-      <div className="relative w-1/2 mt-10" onClick={() => setRightMouse("")}>
-        <div className="scroll-category flex items-center gap-4 px-6">
+      <div className="relative w-3/4 md:w-2/3 xl:w-1/2 mt-6 sm:mt-10" onClick={() => setRightMouse("")}>
+        <div className="scroll-category flex items-center gap-2 sm:gap-4 px-4 sm:px-6 overflow-x-auto">
           {categories.map((category, index) => {
             return (
               <CategoryItem

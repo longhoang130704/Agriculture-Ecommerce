@@ -136,7 +136,7 @@ const EditProduct = (prop) => {
   console.log(currentProduct);
 
   return (
-    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[60%] pb-4 px-2 bg-[#C4FFB8] rounded-[40px]">
+    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-3/4  md:w-1/2 pb-4 px-2 bg-[#C4FFB8] rounded-[40px]">
       <form action="post" onSubmit={handleSubmit} className="flex">
         <div className="flex flex-col pl-10 pt-6 pr-4 gap-4 w-1/2">
           <div className="flex items-center justify-center">
@@ -178,7 +178,7 @@ const EditProduct = (prop) => {
               required
               name={product.harvestDay.id}
               type="date"
-              className="w-full h-[48px] bg-[#C4FFB8]  pl-4 py-1.5 border-[4px] border-solid border-[#FFFFFF] rounded-[20px] box-border font-quicksand font-normal text-[24px] leading-[30px] text-[#000000]"
+              className="w-full h-[72px] md:h-[48px] bg-[#C4FFB8]  pl-4 py-1.5 border-[4px] border-solid border-[#FFFFFF] rounded-[20px] box-border font-quicksand font-normal text-[28px] md:text-[24px] leading-[30px] text-[#000000]"
             />
           </div>
           <Input prop={product.stock_quantity} />
@@ -212,9 +212,9 @@ const EditProduct = (prop) => {
           <div className="flex justify-end pt-10 gap-2">
             <button
               onClick={closeEditForm}
-              className="p-2 bg-[#C4FFB8] flex justify-between items-center h-12 border-solid border-[2.2px] border-[#8EB486] rounded-[40px] box-border cursor-pointer"
+              className= "md:p-2 bg-[#C4FFB8] flex justify-between items-center h-14 md:h-12 border-solid border-[2.2px] border-[#8EB486] rounded-[40px] box-border cursor-pointer"
             >
-              <span className="font-quicksand font-bold text-[18px] leading-[22px] text-center text-[#000000]">
+              <span className="font-quicksand font-bold text-[24px] md:text-[18px] leading-[22px] text-center text-[#000000]">
                 Thoát
               </span>
               <img
@@ -225,9 +225,9 @@ const EditProduct = (prop) => {
             </button>
             <button
               type="submit"
-              className="bg-[#C4FFB8] p-2 flex justify-between items-center  h-12 border-solid border-[2.2px] border-[#8EB486] rounded-[40px] box-border cursor-pointer"
+              className="bg-[#C4FFB8] md:p-2 flex justify-between items-center h-14 md:h-12 border-solid border-[2.2px] border-[#8EB486] rounded-[40px] box-border cursor-pointer"
             >
-              <span className="font-quicksand font-bold text-[18px] leading-[22px] text-center text-[#000000]">
+              <span className="font-quicksand font-bold text-[24px] md:text-[18px] leading-[22px] text-center text-[#000000]">
                 Xác nhận chỉnh sửa
               </span>
               <img
