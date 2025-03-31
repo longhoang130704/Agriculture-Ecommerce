@@ -23,22 +23,21 @@ const ItemSupplier = (prop) => {
 //     fetchInventory()
 // }, [item.inventoryId])
 
-  const handleDeleteProduct = () => {
+  const handleDeleteProduct = async () => {
     let confirmDelete = window.confirm('Are you sure you want to delete this product?')
     if(confirmDelete) {
-      alert('Không cho xóa...')
+      try {
+        const response = await axios.delete(`https://agri-eco-order-component.onrender.com/api/product/${item._id}`)
+        console.log(response.data);
+        prop.setProducts(prop.products.filter((product) => product._id !== item._id));
+      }
+      catch (error){
+        console.log('Error when delete product' + error);
+      }
     } else {
       console.log('Delete product cancelled')
     }
 
-    // try {
-    //   const response = axios.delete(`https://agri-eco-order-component.onrender.com/api/product/${item._id}`)
-    //   console.log(response.data);
-    //   prop.setProducts(prop.products.filter((product) => product._id !== item._id));
-    // }
-    // catch (error){
-    //   console.log('Error when delete product' + error);
-    // }
   }
   const handleEditProduct = () => {
     prop.setCurrentProduct(item)

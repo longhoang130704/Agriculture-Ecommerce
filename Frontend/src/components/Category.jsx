@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CategoryItem from "./CategoryItem";
 import "./webkit.css";
-import EditCategory from "./EditCategory";
 
 const Category = (prop) => {
   const categories = prop.categories;
 
   const [rightMouse, setRightMouse] = useState("");
-  const [currentCategories, setCurrentCategories] = useState(categories[0]);
+
+  useEffect(() => {
+    
+    if (prop.editCategory) {
+      setRightMouse('')
+    }
+  }, [prop.editCategory])
 
   return (
     <>
@@ -19,25 +24,20 @@ const Category = (prop) => {
                 key={index}
                 category={category}
                 categories={categories}
+                editCategory={prop.editCategory}
                 setEditCategory={prop.setEditCategory}
                 rightMouse={rightMouse}
                 setRightMouse={setRightMouse}
-                currentCategories={currentCategories}
-                setCurrentCategories={setCurrentCategories}
+                currentCategory={prop.currentCategory}
+                setCurrentCategory={prop.setCurrentCategory}
                 setCategories={prop.setCategories}
+                setEditingCategory={prop.setEditingCategory}
               />
             );
           })}
         </div>
       </div>
-      {prop.editCategory && (
-        <EditCategory
-          categories={categories}
-          setCategories={prop.setCategories}
-          setEditCategory={prop.setEditCategory}
-          currentCategory={currentCategories}
-        />
-      )}
+      
     </>
   );
 };

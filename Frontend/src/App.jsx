@@ -23,9 +23,9 @@ import AddCategory from "./components/AddCategory";
 import EditCategory from "./components/EditCategory";
 const App = () => {
   return (
-    <div className="bg-slate-300 flex flex-col items-center justify-center gap-10 p-10  w-screen">
+    // <div className="bg-slate-300 flex flex-col items-center justify-center gap-10 p-10  w-screen">
       <StockPage />
-    </div>
+      // </div>
   );
 };
 

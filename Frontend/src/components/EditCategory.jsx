@@ -2,7 +2,8 @@ import { useState } from "react";
 import confirmEdit from "../assets/icons/adjustPriceIconGreen.png";
 import closeIcon from "../assets/icons/close_category.png";
 import Input from "./Input";
-import axios from 'axios'
+import axios from "axios";
+import { toast } from "sonner";
 
 let categoryAttribute = {
   categoryName: {
@@ -19,13 +20,13 @@ let categoryAttribute = {
   },
 };
 const EditCategory = (prop) => {
-  const category = prop.currentCategory;
+  const category = prop.editingCategory || prop.currentCategory;
 
   categoryAttribute.categoryName.content = category.categoryName;
   categoryAttribute.imageUrl.content = category.imageUrl;
   categoryAttribute.description.content = category.description;
 
-  console.log(categoryAttribute);
+  //console.log(categoryAttribute);
 
   const [imageUrl, setLinkImage] = useState(category.imageUrl);
 
@@ -36,7 +37,6 @@ const EditCategory = (prop) => {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    prop.setEditCategory(false);
     let formData = new FormData(event.target);
     console.log("---------EditFormData----------");
 
@@ -46,23 +46,34 @@ const EditCategory = (prop) => {
     console.log("--------------------");
 
     try {
-      const response = await axios.put(`https://agri-eco-order-component.onrender.com/api/category/${category._id}`, formData, {
-        headers: {
-          'Content-Type': 'application/json'
+      const response = await axios.put(
+        `https://agri-eco-order-component.onrender.com/api/category/${category._id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      })
+      );
       console.log(response);
-      prop.setCategories(prop.categories.map((item) => item._id === category._id ? response.data : item));
+      prop.setCategories(
+        prop.categories.map((item) =>
+          item._id === category._id ? response.data : item
+        )
+      );
+      toast.success("Chỉnh sửa phân loại thành công!!");
+    } catch (err) {
+      toast.error("Chỉnh sửa phân loại không thành công!!");
+
+      console.log("Error when update category" + err);
     }
-    catch (err) {
-      console.log('Error when update category' + err);
-    }
+    prop.setEditCategory(false);
   };
   const handleFileChange = () => {
     console.log("handle file change");
   };
   return (
-    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 ">
+    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
       <div className="bg-[#C4FFB8] w-full rounded-[40px] relative flex flex-col items-center justify-center">
         <span className="font-quicksand font-bold text-[36px] leading-[45px] text-center text-[#000000] p-9">
           CHỈNH SỬA PHÂN LOẠI

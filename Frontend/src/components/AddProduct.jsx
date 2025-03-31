@@ -3,15 +3,43 @@ import confirmAdd from "../assets/icons/adjustPriceIconGreen.png";
 import closeIcon from "../assets/icons/close_cartitem.png";
 import checkIcon from "../assets/icons/visibleCheckIcon.png";
 import Input, { TextAreaInput } from "../components/Input";
+import axios from "axios";
+import { toast } from "sonner";
 
 const info = {
-  supplierName: "Khoa-chan co.",
+  supplierName: "Khoa co.", // fake
 };
 
 const product = {
+  supplierId: {
+    title: "",
+    id: "supplierId",
+    content: "67dbb09b784946e74d0cb022", // fake
+  },
+  inventoryId: {
+    title: "",
+    id: "inventoryId",
+    content: "67dbb09b784946e74d0cb0d3", // hardcode
+  },
   productName: {
     title: "Tên sản phẩm",
     id: "productName",
+  },
+  description: {
+    title: "Mô tả",
+    id: "description",
+  },
+  imageUrl: {
+    title: "Đường dẫn hình ảnh",
+    id: "imageUrl",
+  },
+  brand: {
+    title: "Nhãn hiệu",
+    id: "brand",
+  },
+  quantityPerUnit: {
+    title: "Khối lượng mỗi đơn vị",
+    id: "quantityPerUnit",
   },
   buyPrice: {
     title: "Giá mua vào",
@@ -21,37 +49,21 @@ const product = {
     title: "Giá bán ra",
     id: "sellPrice",
   },
-  imageUrl: {
-    title: "Đường dẫn hình ảnh",
-    id: "imageUrl",
+  rating: {
+    title: "Đánh giá trung bình",
+    id: "rating",
   },
-  amount: {
-    title: "Số lượng",
-    id: "amount",
+  numberReviews: {
+    title: "Tổng số đánh giá",
+    id: "numberReviews",
   },
   harvestDay: {
     title: "Ngày thu hoạch",
     id: "harvestDay",
   },
-  packageUnit: {
-    title: "Đơn vị đóng gói (/1 túi)",
-    id: "packageUnit",
-  },
-  nutritionalValue: {
-    title: "Giá trị dinh dưỡng (kcal)",
-    id: "nutritionalValue",
-  },
-  description: {
-    title: "Mô tả",
-    id: "description",
-  },
-  numberOfReviews: {
-    title: "Tổng số đánh giá",
-    id: "numberOfReviews",
-  },
-  averageReview: {
-    title: "Đánh giá trung bình",
-    id: "averageReview",
+  stock_quantity: {
+    title: "Số lượng",
+    id: "stock_quantity",
   },
 };
 
@@ -64,10 +76,9 @@ const formattedDate = `${year}:${month}:${day}`;
 const AddProduct = (prop) => {
   // const categories = prop.categories
 
-  const categories = prop.categories
+  const categories = prop.categories;
 
-  console.log(categories);
-  
+  //console.log(categories);
 
   const [selectedCategory, setSelectedCategory] = useState("");
   const [error, setError] = useState(false);
@@ -94,9 +105,8 @@ const AddProduct = (prop) => {
     prop.setAddTable(false);
     console.log("close");
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    //prop.setAddTable(false)
     let formData = new FormData(event.target);
     if (!selectedCategory) {
       setError(true);
@@ -104,20 +114,40 @@ const AddProduct = (prop) => {
     } else {
       setError(false);
     }
-    formData.append("categories", document.getElementById("categories").value);
+    formData.append("categoryId", selectedCategory);
+    formData.append("inventoryId", product.inventoryId.content);
+    formData.append("supplierId", product.supplierId.content);
+
     console.log("-----------------AddFormData-------------------------");
 
     for (let [key, value] of formData.entries()) {
       console.log(`${key}: ${value}`);
     }
     console.log("------------------------------------------");
+    try {
+      const res = await axios.post(
+        "https://agri-eco-order-component.onrender.com/api/product",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(res);
+      prop.setProducts(prop.products.concat(res.data));
+      toast.success("Thêm sản phẩm thành công!!");
+    } catch (error) {
+      toast.error("Thêm sản phẩmphẩm không thành công!!");
+
+      console.log("Error when create product" + error);
+    }
+    prop.setAddTable(false);
   };
   const handleFileChange = () => {
     console.log("handle file change");
   };
 
-  console.log(imageUrl);
-  
   return (
     <>
       <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col w-[1428px] h-[900px] bg-[#FFF4EE] gap-6 pt-6">
@@ -152,17 +182,32 @@ const AddProduct = (prop) => {
                   )}
                 </label>
                 <Input prop={product.imageUrl} setLinkImage={setLinkImage} />
-                <Input prop={product.amount} />
-                <Input prop={product.harvestDay} />
-                <Input prop={product.packageUnit} />
-                <Input prop={product.nutritionalValue} />
+                <Input prop={product.stock_quantity} />
+                <div className="flex flex-col items-start gap-1 w-full pl-1">
+                  <label
+                    htmlFor={product.harvestDay.id}
+                    className="w-full h-[24px] font-quicksand font-bold text-[20px] leading-[28px] text-[#000000] flex-none self-stretch flex-grow-0"
+                  >
+                    {product.harvestDay.title}
+                  </label>
+                  <input
+                    id={product.harvestDay.id}
+                    defaultValue={product.harvestDay.content}
+                    required
+                    name={product.harvestDay.id}
+                    type="date"
+                    className="w-full h-[48px] bg-[#C4FFB8]  pl-4 py-1.5 border-[4px] border-solid border-[#FFFFFF] rounded-[20px] box-border font-quicksand font-normal text-[24px] leading-[30px] text-[#000000]"
+                  />
+                </div>
+                <Input prop={product.quantityPerUnit} />
+                <Input prop={product.brand} />
               </div>
               <div className="flex flex-col pl-4 pt-6 pr-6 gap-3 w-1/2">
                 <Input prop={product.productName} />
                 <Input prop={product.buyPrice} />
                 <Input prop={product.sellPrice} />
-                <Input prop={product.numberOfReviews} />
-                <Input prop={product.averageReview} />
+                <Input prop={product.numberReviews} />
+                <Input prop={product.rating} />
                 <TextAreaInput prop={product.description} />
               </div>
 
@@ -221,7 +266,7 @@ const AddProduct = (prop) => {
                 onChange={(e) => setSelectedCategory(e.target.value)}
                 required
                 name="categories"
-                defaultValue=''
+                defaultValue=""
                 className="w-full h-[48px] bg-[#C4FFB8] pl-4 py-1.5 border-[4px] border-solid border-[#FFFFFF] rounded-[20px] box-border font-quicksand font-normal text-[24px] leading-[30px] text-[#000000]"
               >
                 <option value="" disabled>

@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import { toast } from "sonner";
 
 import Category from "./../components/Category";
 import FilterCell from "./../components/FilterCell";
@@ -24,6 +25,47 @@ const StockPage = () => {
   const [editCategory, setEditCategory] = useState(false);
 
   const [categories, setCategories] = useState([]);
+
+  const [currentCategory, setCurrentCategory] = useState(null);
+  const [editingCategory, setEditingCategory] = useState(null);
+
+  const [filterProducts, setFilterProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [typeSort, setTypeSort] = useState("sellPrice");
+  const [asc, setAsc] = useState(true);
+
+  useEffect(() => {
+    if (!products) return;
+
+    let filtered = products;
+
+    if (currentCategory) {
+      filtered = filtered.filter(
+        (product) => product.categoryId._id === currentCategory._id
+      );
+    }
+
+    if (searchTerm.trim() !== "") {
+      filtered = filtered.filter((product) =>
+        product.productName.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    filtered = [...filtered].sort((a, b) => {
+      if (typeSort === "sellPrice") {
+        return asc ? a.sellPrice - b.sellPrice : b.sellPrice - a.sellPrice;
+      } else if (typeSort === "expiredDate") {
+        return asc
+          ? new Date(a.expiredDate) - new Date(b.expiredDate)
+          : new Date(b.expiredDate) - new Date(a.expiredDate);
+      }
+      return 0;
+    });
+
+    setFilterProducts(filtered);
+  }, [currentCategory, typeSort, asc, searchTerm, products]);
+
+  // console.log(filterProducts);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -61,53 +103,80 @@ const StockPage = () => {
 
   useEffect(() => {
     const main = mainRef.current || document.getElementById("main");
-    if (editTable || addTable) {
+    if (editTable || addTable || addCategory || editCategory) {
       main?.classList.add("pointer-events-none", "opacity-50");
     } else {
       main?.classList.remove("pointer-events-none", "opacity-50");
     }
-  }, [editTable, addTable]);
+  }, [editTable, addTable, addCategory, editCategory]);
 
-  //console.log(categories);
-  
+  // toast.success("Chào mừng trở lại!!!");
 
   return (
     <>
       {editTable ? (
         <EditProduct
-          products={products} 
+          products={products}
           setProducts={setProducts}
           setEditTable={setEditTable}
           currentProduct={currentProduct}
         />
       ) : addTable ? (
-        <AddProduct categories={categories} products={products} setProducts={setProducts} setAddTable={setAddTable} />
+        <AddProduct
+          categories={categories}
+          products={products}
+          setProducts={setProducts}
+          setAddTable={setAddTable}
+        />
       ) : addCategory ? (
-        <AddCategory setAddCategory={setAddCategory} categories={categories} setCategories={setCategories} />
+        <AddCategory
+          setAddCategory={setAddCategory}
+          categories={categories}
+          setCategories={setCategories}
+        />
       ) : (
-        <></>
+        editCategory && (
+          <EditCategory
+            categories={categories}
+            setCategories={setCategories}
+            editCategory={editCategory}
+            setEditCategory={setEditCategory}
+            editingCategory={editingCategory}
+            currentCategory={currentCategory}
+          />
+        )
       )}
       <div
         id="main"
-        className="flex flex-col items-center justify-start relative w-screen h-full gap-20 bg-[#FFF4EE] py-20"
+        className="flex flex-col items-center justify-start relative w-full h-full gap-20 bg-[#FFF4EE] py-20"
       >
         <nav>NAVBAR: ...</nav>
         <div className="w-full flex items-center justify-around gap-12">
           <Category
             categories={categories}
+            currentCategory={currentCategory}
+            setCurrentCategory={setCurrentCategory}
             editCategory={editCategory}
             setEditCategory={setEditCategory}
             setCategories={setCategories}
+            setEditingCategory={setEditingCategory}
           />
-          <FilterCell />
+          <FilterCell
+            asc={asc}
+            setAsc={setAsc}
+            typeSort={typeSort}
+            setTypeSort={setTypeSort}
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+          />
         </div>
         <div className="flex items-center justify-center gap-28">
           <AddCategoryButton setAddCategory={setAddCategory} />
           <AddProductButton setAddTable={setAddTable} />
         </div>
         <div className="grid grid-cols-5 gap-12 pt-3">
-          {products.map((product, index) => {
-            if (product.buyPrice !== 0)
+          {filterProducts.map((product, index) => {
+            if (product.sellPrice !== 0)
               return (
                 <ItemSupplier
                   products={products}
