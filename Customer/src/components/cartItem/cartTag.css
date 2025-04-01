@@ -1,0 +1,36 @@
+.cartTag-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #C4FFB8;
+    border-radius: 100px;
+    border: 3px solid #ffffff;
+    margin: 10px;
+    padding-right: 20px;
+}
+.name{
+    font-weight: 400;
+}
+.subtotal{
+    font-weight: 600;
+}
+.img img{
+    width: 70px;
+    height: 70px;
+    margin: 10px;
+    border-radius: 50%;
+}
+.delete{
+    margin-right: 10px;
+    cursor: pointer;
+}
+.change-quantity{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border: 3px solid #8EB486;
+    border-radius: 100px;
+    cursor: pointer;
+}

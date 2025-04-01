@@ -1,0 +1,46 @@
+.exploreMenu{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+}
+
+.exploreMenu h1{
+    color: black;
+    font-weight: 600;
+    text-align: center;
+    font-size: large;
+}
+
+.explore-menu-list{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap: 50px;
+    margin: 20px;
+    /* overflow-x: scroll; */
+    text-align: center;
+    height: 10vw;
+}
+.explore-menu-list-item img{
+    width: 8vw;
+    height: 8vw;
+    /* min-width: 80%; */
+    cursor: pointer;
+    transition: 0.15s;
+    border-radius: 60%;  
+    transition: all 0.3s ease;
+}
+.explore-menu-list-item .active{
+    border: 5px solid rgb(0, 255, 128);
+    border-radius: 50%;
+    padding: 3px;
+}
+.explore-menu-list-item img:hover{
+    transition: all 0.3s ease;
+    width: 9vw;
+    height: 9vw;
+
+}
